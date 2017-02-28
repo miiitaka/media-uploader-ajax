@@ -25,12 +25,7 @@ class Media_Uploader_Ajax {
 			array( $this, 'page_render' )
 		);
 
-		add_action( 'admin_print_styles-'  . $page, array( $this, 'add_style' ) );
 		add_action( 'admin_print_scripts-' . $page, array( $this, 'admin_scripts') );
-	}
-
-	public function add_style () {
-		wp_enqueue_style( 'thickbox' );
 	}
 
 	public function admin_scripts () {
