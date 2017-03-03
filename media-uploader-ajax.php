@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Media Uploader Ajax Type Sample Plugin
-Plugin URI: https://www.terakoya.work/
+Plugin URI: https://github.com/miiitaka/media-uploader-ajax
 Description: Media uploader ajax type sample plugin.
 Version: 1.0.0
 Author: Kazuya Takami
@@ -29,7 +29,7 @@ class Media_Uploader_Ajax {
 	}
 
 	public function admin_scripts () {
-		wp_enqueue_script( 'media-uploader-main-js', plugins_url( 'js/main.js', __FILE__ ), array( 'jquery' ) );
+		wp_enqueue_script( 'media-uploader-main-js', plugins_url( 'js/media-uploader-main.js', __FILE__ ), array( 'jquery' ) );
 		wp_enqueue_media();
 	}
 
