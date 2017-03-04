@@ -20,7 +20,8 @@
 			});
 		});
 
-		$("#media-upload").on("click", function() {
+		$("#media-upload").on("click", function(e) {
+			e.preventDefault();
 			custom_uploader.open();
 		});
 	});
