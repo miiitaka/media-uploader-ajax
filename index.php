@@ -19,9 +19,11 @@ function register_my_custom_menu_page__banner(){
 		'',
 		7
 	);
-	wp_enqueue_media();
-
 }
+function action_admin_enqueue_scripts_wp_enqueue_media(){
+	wp_enqueue_media();
+}
+add_action( 'admin_enqueue_scripts', 'action_admin_enqueue_scripts_wp_enqueue_media' );
 
 function page_render () {
 	// ユーザーが必要な権限を持つか確認する必要がある
