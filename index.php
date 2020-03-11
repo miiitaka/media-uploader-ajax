@@ -180,17 +180,38 @@ function page_render () {
 	<?php
 }
 
-function add_banner($bannerNum){
+function add_banner($bannerNum, $echoFlg=true){
 	$opt_val = get_option( 'mt_banners'.$bannerNum );
 	$arr = explode(',', $opt_val);
-	if(count($arr)>0):
-		for($i=0; $i<count($arr); $i++):
-			$item = explode('_|_', $arr[$i]);
-			$itemImage = $item[0];
-			$itemLink = $item[1];
-			$itemBlank =  $item[2] === 'true' ? ' target="_blank"' : '';
-			$itemText = $item[3];
-			echo '<li class="banner-list__list"><a class="banner-list__link" href="'.$itemLink.'"'.$itemBlank.'><img class="banner-list__img" src="'.$itemImage.'" alt="'.$itemText.'"></a></li>'."\n";
-		endfor;
-	endif;
+	$bannerCount = 0;
+	if($echoFlg===true) {
+		if(count($arr)>0):
+			for($i=0; $i<count($arr); $i++):
+
+				$item = explode('_|_', $arr[$i]);
+				$itemImage = $item[0];
+				$itemLink = $item[1];
+				$itemBlank =  $item[2] === 'true' ? ' target="_blank"' : '';
+				$itemText = $item[3];
+				if($itemImage){
+					if($itemLink){
+						echo '<li class="banner-list__list"><a class="banner-list__link" href="'.$itemLink.'"'.$itemBlank.'><img class="banner-list__img" src="'.$itemImage.'" alt="'.$itemText.'"></a></li>'."\n";
+					} else {
+						echo '<li class="banner-list__list"><img class="banner-list__img" src="'.$itemImage.'" alt="'.$itemText.'"></li>'."\n";
+					}
+				}
+			endfor;
+		endif;
+	} else {
+		if(count($arr)>0):
+			for($i=0; $i<count($arr); $i++):
+				$item = explode('_|_', $arr[$i]);
+				$itemImage = $item[0];
+				if($itemImage){
+					$bannerCount++;
+				}
+			endfor;
+		endif;
+		return $bannerCount;
+	}
 }
